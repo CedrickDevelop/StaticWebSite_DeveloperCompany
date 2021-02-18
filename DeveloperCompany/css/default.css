@@ -1,0 +1,506 @@
+
+/* reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* https://css-tricks.com/box-sizing/ */
+}
+
+/* https://developer.mozilla.org/fr/docs/Web/CSS/@media/prefers-reduced-motion */
+
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth; /* https://developer.mozilla.org/fr/docs/Web/CSS/scroll-behavior */
+  }
+}
+
+/* global */
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+  background-color: #223139;
+  color: #fff;
+}
+
+.container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+
+section {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 3.4rem ;
+}
+
+h1 span {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 2.25rem ;
+}
+
+h2 > span {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: .9rem ;
+  max-width: 500px;
+  margin: auto;
+  line-height: 2;
+  border-top: 1px solid #ccc;
+  padding-top: 2rem;
+}
+
+.btn {
+  border: 2px solid #fff;
+  padding: 1rem 2.75rem;
+  width: 330px;
+  margin: auto;
+  border-radius: 2rem;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+
+  /*https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-basics*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 1s
+}
+
+.btn span {
+  font-size: 1.75rem;
+}
+
+.btn:hover {
+  /* https://www.alsacreations.com/tuto/lire/909-CSS-transparence-couleur-rgba.html */
+  background-color: rgba(0, 0, 0, .25);
+}
+
+.up a {
+  rotate: 90deg;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  .up a {
+    margin-top: 0;
+  }
+}
+
+/* header */
+
+/* https://developer.mozilla.org/fr/docs/Apprendre/HTML/Comment/D%C3%A9couper_une_page_web_en_sections_logiques */
+
+header {
+  background-color: #093348;
+  transition: padding 300ms ease;
+}
+
+header.sticky {
+  padding: 16px 0;
+  box-shadow: 0 0px 15px 10px rgba(0, 0, 0, 0.5); 
+}
+
+header .container {
+  transition: max-width 300ms ease;
+}
+
+header.sticky .container {
+  max-width: 100%;
+}
+
+#logo {
+  padding: 0;
+  border: 1px solid #3b5968;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+#logo:hover {
+  background-color:  #1f4559;
+
+  /*https://developer.mozilla.org/fr/docs/Web/CSS/animation */
+  animation: 4s linear 0s infinite alternate rotate_logo;
+}
+
+@keyframes rotate_logo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+#logo img {
+  display: block;
+}
+
+#showNav a,
+#hideNav a {
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+#hideNav,
+nav {
+  display: none;
+}
+
+/* https://developer.mozilla.org/fr/docs/Web/CSS/:target */
+#toggleNav:target nav {
+  display: initial;
+}
+
+#toggleNav:target #showNav {
+  display: none;
+}
+
+#toggleNav:target #hideNav {
+  display: initial;
+}
+
+header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav {
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 0 0 0;
+  margin: 0 auto;
+  width: 200px;
+  list-style-type: none;
+}
+
+nav a {
+  text-transform: uppercase;
+  padding: 11px 22px;
+  transition: background-color 1s;
+}
+
+nav a:hover {
+  background-color: #1f4559;
+  border-radius: .5rem;
+}
+
+nav .sep {
+  width: 100%;
+  height: 2px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #2c101a;
+
+  /* https://developer.mozilla.org/fr/docs/Web/CSS/box-shadow */ 
+  box-shadow: 1px 0 0 0 rgba(255, 255, 255, 0.07); 
+}
+
+#toggle {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 32px 0;
+  }
+  header + section {
+    padding-top: 8rem;
+  }
+  #showNav, 
+  #hideNav {
+    display: none;
+  }
+  #toggleNav:target #hideNav {
+    display: none;
+  }
+  #logo {
+    margin-bottom: 0;
+  }
+  header .container,
+  nav ul {
+    flex-direction: row;
+  }
+  nav {
+    width: initial;
+    display: initial;
+    padding-bottom: 0;
+  }
+  nav ul {
+    padding-top: 0 ;
+    margin: 0;
+    width: initial;
+  }
+  nav a {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+  nav .sep {
+    width: 2px;
+    height: 2rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+
+}
+
+/*
+@media (min-width: 1200px) {
+  nav a {
+    margin-right: 22px;
+    margin-left: 22px;
+  }
+}*/
+
+/* jumbotron */
+
+/* https://www.journaldunet.fr/web-tech/developpement/1202653-comment-creer-un-effet-jumbotron-avec-une-image-d-arriere-plan-avec-bootstrap/ */
+
+#jumbotron {
+  background: #7a7c7e url('img/jumbotron.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+#jumbotron a {
+  margin-top: 2rem;
+}
+
+#jumbotron .btn {
+  background-color: rgba(0, 0, 0, .15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+#jumbotron .btn:hover {
+  background-color: rgba(0, 0, 0, .5);
+}
+
+
+/* team */
+
+#team {
+  background-color: #fff;
+  color: #0d415c;
+}
+
+#team .card-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media (min-width: 768px) {
+  #team .card-group {
+    flex-direction: row;
+  }
+}
+
+#team .card-group p {
+  border: none;
+  padding-top: 0;
+}
+
+#team .card {
+  padding: 2rem;
+}
+
+#team img:hover {
+  -webkit-animation: 1s linear 0s infinite alternate rotate_team;
+          animation: 1s linear 0s infinite alternate rotate_team;
+}
+
+@-webkit-keyframes rotate_team { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotate_team { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+
+/* portfolio */
+
+#portfolio {
+  background-color: #3ead87;
+}
+
+#portfolio .card-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+#portfolio .card-group p {
+  border: none;
+  padding-top: 0;
+}
+
+#portfolio .card {
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+#portfolio a .more {
+  display: none;
+  font-size: 3rem;
+  position: absolute;
+  top: calc(50% - 24px);
+  left: calc(50% - 14px);
+}
+
+#portfolio a img {
+  transition: filter 1s
+}
+
+#portfolio a:hover img {
+  filter: invert(15%);
+}
+
+#portfolio a:hover .more {
+  display: block;
+}
+
+#portfolio .sep {
+  display: none;
+  width: 1px;
+  height: 184px;;
+  background-color: #4ebe98;
+}
+
+
+#portfolio .card-group p {
+  border: none;
+  padding-top: 0%;
+}
+
+@media (min-width: 768px) {
+  #portfolio .card-group {
+    flex-direction: row;
+    justify-content: center;
+  }
+  #portfolio .card {
+    padding: 2rem 7rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  #portfolio .card-group {
+    justify-content: space-around;
+  }
+  #portfolio .card {
+    padding: 2rem 1rem;
+  }
+  #portfolio .sep {
+    display: block;
+  }
+}
+
+
+/* contact */
+form {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_universels */
+form * {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+}
+
+form textarea {
+  height: 8rem;
+}
+
+::placeholder {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #8ea6b3;
+}
+
+
+/* footer */
+
+footer {
+  text-align: center;
+}
+
+footer .container {
+  border-top: 1px solid #747d82;
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+footer .social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+footer .social a:hover {
+  filter: invert(1);
+}
+footer .social a img {
+  width: 50px;
+  
+}
+
+@media (min-width: 768px) {
+  footer .container {
+    flex-direction: row;
+    margin-bottom: 0;
+  }
+}
